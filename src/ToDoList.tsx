@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
+interface Task {
+  id: number;
+  title: string;
+}
+
 const TodoList = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]); // Provide a type annotation for tasks
   const [newTask, setNewTask] = useState("");
 
-  const addTask = (e) => {
+  const addTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newTask === "") return;
     setTasks([...tasks, { id: Date.now(), title: newTask }]);
